@@ -1,21 +1,25 @@
-= SQLite JDBC Driver
-:project-version: 3.47.1.0
+= Limbo JDBC Driver
+:project-version: 0.1
 
-image:https://img.shields.io/github/actions/workflow/status/xerial/sqlite-jdbc/ci.yml?branch=master[GitHub Workflow Status (branch),link=https://github.com/xerial/sqlite-jdbc/actions/workflows/ci.yml?query=branch%3Amaster]
-image:https://badges.gitter.im/xerial/sqlite-jdbc.svg[Join the chat,link=https://gitter.im/xerial/sqlite-jdbc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge]
-image:https://maven-badges.herokuapp.com/maven-central/org.xerial/sqlite-jdbc/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/org.xerial/sqlite-jdbc/]
-image:https://javadoc.io/badge2/org.xerial/sqlite-jdbc/javadoc.svg[javadoc,link=https://javadoc.io/doc/org.xerial/sqlite-jdbc]
-image:https://img.shields.io/nexus/s/org.xerial/sqlite-jdbc?color=blue&label=maven%20snapshot&server=https%3A%2F%2Foss.sonatype.org%2F[Sonatype Nexus (Snapshots),link=https://oss.sonatype.org/content/repositories/snapshots/org/xerial/sqlite-jdbc/]
+image:https://img.shields.io/github/actions/workflow/status/xerial/Limbo-jdbc/ci.yml?branch=master[GitHub Workflow Status (branch),link=https://github.com/xerial/Limbo-jdbc/actions/workflows/ci.yml?query=branch%3Amaster]
+image:https://badges.gitter.im/xerial/Limbo-jdbc.svg[Join the chat,link=https://gitter.im/xerial/Limbo-jdbc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge]
+image:https://maven-badges.herokuapp.com/maven-central/org.xerial/Limbo-jdbc/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/org.xerial/Limbo-jdbc/]
+image:https://javadoc.io/badge2/org.xerial/Limbo-jdbc/javadoc.svg[javadoc,link=https://javadoc.io/doc/org.xerial/Limbo-jdbc]
+image:https://img.shields.io/nexus/s/org.xerial/Limbo-jdbc?color=blue&label=maven%20snapshot&server=https%3A%2F%2Foss.sonatype.org%2F[Sonatype Nexus (Snapshots),link=https://oss.sonatype.org/content/repositories/snapshots/org/xerial/Limbo-jdbc/]
 
-SQLite JDBC is a library for accessing and creating https://www.sqlite.org[SQLite] database files in Java.
+Limbo JDBC is a library for accessing and creating https://github.com/tursodatabase/limbo[Limbo] database files in Java.
 
-Our SQLiteJDBC library requires no configuration since native libraries for major OSs, including Windows, macOS, Linux etc., are assembled into a single JAR (Java Archive) file.
+Limbo JDBC is a port of SQLite JDBC to use Limbo instead of SQLite.
+
+Limbo is a work-in-progress, in-process OLTP database management system write in RUST, compatible with SQLite.
+
+Our LimboJDBC library requires no configuration since native libraries for major OSs, including Windows, macOS, Linux etc., are assembled into a single JAR (Java Archive) file.
 
 == Project Status
 
 The project is maintained, but is not being actively developed:
 
-- We follow every new version of SQLite and will release a corresponding version of our driver.
+- We follow every new version of Limbo and will release a corresponding version of our driver.
 - Bugs will be investigated, and fixed if possible.
 - New features are driven by pull requests.
 
@@ -25,22 +29,22 @@ The current maintainer of the project is https://github.com/gotson[gotson].
 
 ➡️ More usage examples and configuration are available in link:USAGE.md[USAGE.md]
 
-SQLite JDBC is a library for accessing SQLite databases through the JDBC API. For the general usage of JDBC, see https://docs.oracle.com/javase/tutorial/jdbc/index.html[JDBC Tutorial] or https://www.oracle.com/technetwork/java/javase/tech/index-jsp-136101.html[Oracle JDBC Documentation].
+Limbo JDBC is a library for accessing Limbo databases through the JDBC API. For the general usage of JDBC, see https://docs.oracle.com/javase/tutorial/jdbc/index.html[JDBC Tutorial] or https://www.oracle.com/technetwork/java/javase/tech/index-jsp-136101.html[Oracle JDBC Documentation].
 
-. <<Download,Download>> `sqlite-jdbc-{project-version}.jar`
+. <<Download,Download>> `Limbo-jdbc-{project-version}.jar`
 then append this jar file into your classpath.
-. Open a SQLite database connection from your code. (see the example below)
+. Open a Limbo database connection from your code. (see the example below)
 
 === Example usage
 
-Assuming `sqlite-jdbc-{project-version}.jar` is placed in the current directory.
+Assuming `Limbo-jdbc-{project-version}.jar` is placed in the current directory.
 
 [source,shell,subs="attributes+"]
 ----
 > javac Sample.java
-> java -classpath ".;sqlite-jdbc-{project-version}.jar" Sample   # in Windows
+> java -classpath ".;Limbo-jdbc-{project-version}.jar" Sample   # in Windows
 or
-> java -classpath ".:sqlite-jdbc-{project-version}.jar" Sample   # in macOS or Linux
+> java -classpath ".:Limbo-jdbc-{project-version}.jar" Sample   # in macOS or Linux
 name = leo
 id = 1
 name = yui
@@ -66,7 +70,7 @@ id = 2
         try
         (
           // create a database connection
-          Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+          Connection connection = DriverManager.getConnection("jdbc:Limbo:sample.db");
           Statement statement = connection.createStatement();
         )
         {
@@ -95,17 +99,17 @@ id = 2
 
 ----
 
-== How does SQLiteJDBC work?
+== How does LimboJDBC work?
 
-Our SQLite JDBC driver package (i.e., `sqlite-jdbc-{project-version}.jar`) contains three
-types of native SQLite libraries (`sqlitejdbc.dll`, `sqlitejdbc.dylib`, `sqlitejdbc.so`),
+Our Limbo JDBC driver package (i.e., `Limbo-jdbc-{project-version}.jar`) contains three
+types of native Limbo libraries (`Limbojdbc.dll`, `Limbojdbc.dylib`, `Limbojdbc.so`),
 each of them is compiled for Windows, macOS and Linux. An appropriate native library
 file is automatically extracted into your OS's temporary folder, when your program
-loads `org.sqlite.JDBC` driver.
+loads `org.Limbo.JDBC` driver.
 
 === Supported Operating Systems
 
-Since sqlite-jdbc-3.6.19, the natively compiled SQLite engines will be used for
+Since Limbo-jdbc-3.6.19, the natively compiled Limbo engines will be used for
 the following operating systems:
 
 |===
@@ -119,19 +123,19 @@ the following operating systems:
 |FreeBSD |✔ |✔ | | | |✔ | |
 |===
 
-In the other OSs not listed above, the pure-java SQLite is used. (Applies to versions before 3.7.15)
+In the other OSs not listed above, the pure-java Limbo is used. (Applies to versions before 3.7.15)
 
 If you want to use the native library for your OS, link:./CONTRIBUTING.md[build the source from scratch].
 
 === GraalVM native-image support
 
-Sqlite JDBC supports https://www.graalvm.org/native-image/[GraalVM native-image] out of the box starting from version 3.40.1.0.
+Limbo JDBC supports https://www.graalvm.org/native-image/[GraalVM native-image] out of the box starting from version 3.40.1.0.
 There has been rudimentary support for some versions before that, but this was not actively tested by the CI.
 
-By default, the `sqlitejdbc` library for the compilation target will be included in the native image, accompanied by the required JNI configuration.
+By default, the `Limbojdbc` library for the compilation target will be included in the native image, accompanied by the required JNI configuration.
 At runtime, this library will be extracted to the temp folder and loaded from there.
-For faster startup however, it is recommended to set the `org.sqlite.lib.exportPath` property at build-time.
-This will export the `sqlitejdbc` library at build-time to the specified directory, and the library will not be included as a resource.
+For faster startup however, it is recommended to set the `org.Limbo.lib.exportPath` property at build-time.
+This will export the `Limbojdbc` library at build-time to the specified directory, and the library will not be included as a resource.
 As a result, the native image itself will be slightly smaller and the overhead of exporting the library at run-time is eliminated,
 but you need to make sure the library can be found at run-time.
 The best way to do this is to simply place the library next to the executable.
@@ -140,10 +144,10 @@ The best way to do this is to simply place the library next to the executable.
 
 [source,shell]
 ----
-native-image -Dorg.sqlite.lib.exportPath=~/outDir -H:Path=~/outDir -cp foo.jar org.example.Main
+native-image -Dorg.Limbo.lib.exportPath=~/outDir -H:Path=~/outDir -cp foo.jar org.example.Main
 ----
 
-This will place both the `sqlitejdbc` shared library and the native-image output in the `~/outDir` folder.
+This will place both the `Limbojdbc` shared library and the native-image output in the `~/outDir` folder.
 
 === Maven example
 
@@ -156,31 +160,31 @@ This example uses the https://graalvm.github.io/native-build-tools/latest/index.
     <artifactId>native-maven-plugin</artifactId>
     <configuration>
         <buildArgs>
-            <buildArg>-Dorg.sqlite.lib.exportPath=${project.build.directory}</buildArg>
+            <buildArg>-Dorg.Limbo.lib.exportPath=${project.build.directory}</buildArg>
         </buildArgs>
     </configuration>
 </plugin>
 ----
 
-This will automatically place the `sqlitejdbc` library in the `/target` folder of your project, creating a functional execution environment.
+This will automatically place the `Limbojdbc` library in the `/target` folder of your project, creating a functional execution environment.
 When packaging the resulting app, simply include the library in the distribution bundle.
 
 == Download
 
-Download from https://search.maven.org/artifact/org.xerial/sqlite-jdbc[Maven Central] or from the https://github.com/xerial/sqlite-jdbc/releases[releases] page.
+Download from https://search.maven.org/artifact/org.xerial/Limbo-jdbc[Maven Central] or from the https://github.com/xerial/Limbo-jdbc/releases[releases] page.
 
 [source,xml,subs="attributes+"]
 ----
 <dependencies>
     <dependency>
       <groupId>org.xerial</groupId>
-      <artifactId>sqlite-jdbc</artifactId>
+      <artifactId>Limbo-jdbc</artifactId>
       <version>{project-version}</version>
     </dependency>
 </dependencies>
 ----
 
-Snapshots of the development version are available in https://oss.sonatype.org/content/repositories/snapshots/org/xerial/sqlite-jdbc/[Sonatype's snapshots repository].
+Snapshots of the development version are available in https://oss.sonatype.org/content/repositories/snapshots/org/xerial/Limbo-jdbc/[Sonatype's snapshots repository].
 
 === Validating downloads
 
@@ -211,15 +215,15 @@ ckBY38CaMGPPLXVyY8Kr6dYFAP9wYLu7nsDZCOXkAgS+et4Pk1WZCggoYUkxsX1o
 
 === Project versioning explained
 
-The project's version follows the version of the SQLite library that is bundled in the jar, with an extra digit to denote the project's increment.
+The project's version follows the version of the Limbo library that is bundled in the jar, with an extra digit to denote the project's increment.
 
-For example, if the SQLite version is `3.39.2`, the project version will be `3.39.2.x`, where `x` starts at 0, and increments with every release that is not changing the SQLite version.
+For example, if the Limbo version is `3.39.2`, the project version will be `3.39.2.x`, where `x` starts at 0, and increments with every release that is not changing the Limbo version.
 
-If the SQLite version is updated to `3.40.0`, the project version will be updated to `3.40.0.0`.
+If the Limbo version is updated to `3.40.0`, the project version will be updated to `3.40.0.0`.
 
 === Hint for maven-shade-plugin
 
-You may need to add shade plugin transformer to solve `No suitable driver found for jdbc:sqlite:` issue.
+You may need to add shade plugin transformer to solve `No suitable driver found for jdbc:Limbo:` issue.
 
 [source,xml]
 ----
@@ -233,7 +237,7 @@ You may need to add shade plugin transformer to solve `No suitable driver found 
 ----
 <dependency>
     <groupId>org.xerial</groupId>
-    <artifactId>sqlite-jdbc</artifactId>
+    <artifactId>Limbo-jdbc</artifactId>
     <version>{project-version}</version>
 </dependency>
 ----
@@ -242,7 +246,7 @@ You may need to add shade plugin transformer to solve `No suitable driver found 
 
 We are always looking for:
 
-- *Reviewers* for issues or PRs, you can check image:https://img.shields.io/github/labels/xerial/sqlite-jdbc/review%20wanted[GitHub labels,link=https://github.com/xerial/sqlite-jdbc/labels/review%20wanted]
-- *Contributors* to submit PRs, you can check image:https://img.shields.io/github/labels/xerial/sqlite-jdbc/help%20wanted[GitHub labels,link=https://github.com/xerial/sqlite-jdbc/labels/help%20wanted] and image:https://img.shields.io/github/labels/xerial/sqlite-jdbc/good%20first%20issue[GitHub labels,link=https://github.com/xerial/sqlite-jdbc/labels/good%20first%20issue]
+- *Reviewers* for issues or PRs, you can check image:https://img.shields.io/github/labels/xerial/Limbo-jdbc/review%20wanted[GitHub labels,link=https://github.com/xerial/Limbo-jdbc/labels/review%20wanted]
+- *Contributors* to submit PRs, you can check image:https://img.shields.io/github/labels/xerial/Limbo-jdbc/help%20wanted[GitHub labels,link=https://github.com/xerial/Limbo-jdbc/labels/help%20wanted] and image:https://img.shields.io/github/labels/xerial/Limbo-jdbc/good%20first%20issue[GitHub labels,link=https://github.com/xerial/Limbo-jdbc/labels/good%20first%20issue]
 
 Please read our link:./CONTRIBUTING.md[contribution] guide.
