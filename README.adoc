@@ -1,11 +1,11 @@
 = Limbo JDBC Driver
 :project-version: 0.1
 
-image:https://img.shields.io/github/actions/workflow/status/xerial/Limbo-jdbc/ci.yml?branch=master[GitHub Workflow Status (branch),link=https://github.com/xerial/Limbo-jdbc/actions/workflows/ci.yml?query=branch%3Amaster]
-image:https://badges.gitter.im/xerial/Limbo-jdbc.svg[Join the chat,link=https://gitter.im/xerial/Limbo-jdbc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge]
-image:https://maven-badges.herokuapp.com/maven-central/org.xerial/Limbo-jdbc/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/org.xerial/Limbo-jdbc/]
-image:https://javadoc.io/badge2/org.xerial/Limbo-jdbc/javadoc.svg[javadoc,link=https://javadoc.io/doc/org.xerial/Limbo-jdbc]
-image:https://img.shields.io/nexus/s/org.xerial/Limbo-jdbc?color=blue&label=maven%20snapshot&server=https%3A%2F%2Foss.sonatype.org%2F[Sonatype Nexus (Snapshots),link=https://oss.sonatype.org/content/repositories/snapshots/org/xerial/Limbo-jdbc/]
+image:https://img.shields.io/github/actions/workflow/status/velo/limbo-jdbc/ci.yml?branch=master[GitHub Workflow Status (branch),link=https://github.com/velo/limbo-jdbc/actions/workflows/ci.yml?query=branch%3Amaster]
+image:https://badges.gitter.im/velo/limbo-jdbc.svg[Join the chat,link=https://gitter.im/velo/limbo-jdbc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge]
+image:https://maven-badges.herokuapp.com/maven-central/com.marvinformatics/limbo-jdbc/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/com.marvinformatics/limbo/limbo-jdbc/]
+image:https://javadoc.io/badge2/com.marvinformatics/limbo-jdbc/javadoc.svg[javadoc,link=https://javadoc.io/doc/com.marvinformatics/limbo-jdbc]
+image:https://img.shields.io/nexus/s/com.marvinformatics/limbo-jdbc?color=blue&label=maven%20snapshot&server=https%3A%2F%2Foss.sonatype.org%2F[Sonatype Nexus (Snapshots),link=https://oss.sonatype.org/content/repositories/snapshots/org/velo/limbo-jdbc/]
 
 Limbo JDBC is a library for accessing and creating https://github.com/tursodatabase/limbo[Limbo] database files in Java.
 
@@ -31,20 +31,20 @@ The current maintainer of the project is https://github.com/gotson[gotson].
 
 Limbo JDBC is a library for accessing Limbo databases through the JDBC API. For the general usage of JDBC, see https://docs.oracle.com/javase/tutorial/jdbc/index.html[JDBC Tutorial] or https://www.oracle.com/technetwork/java/javase/tech/index-jsp-136101.html[Oracle JDBC Documentation].
 
-. <<Download,Download>> `Limbo-jdbc-{project-version}.jar`
+. <<Download,Download>> `limbo-jdbc-{project-version}.jar`
 then append this jar file into your classpath.
 . Open a Limbo database connection from your code. (see the example below)
 
 === Example usage
 
-Assuming `Limbo-jdbc-{project-version}.jar` is placed in the current directory.
+Assuming `limbo-jdbc-{project-version}.jar` is placed in the current directory.
 
 [source,shell,subs="attributes+"]
 ----
 > javac Sample.java
-> java -classpath ".;Limbo-jdbc-{project-version}.jar" Sample   # in Windows
+> java -classpath ".;limbo-jdbc-{project-version}.jar" Sample   # in Windows
 or
-> java -classpath ".:Limbo-jdbc-{project-version}.jar" Sample   # in macOS or Linux
+> java -classpath ".:limbo-jdbc-{project-version}.jar" Sample   # in macOS or Linux
 name = leo
 id = 1
 name = yui
@@ -101,7 +101,7 @@ id = 2
 
 == How does LimboJDBC work?
 
-Our Limbo JDBC driver package (i.e., `Limbo-jdbc-{project-version}.jar`) contains three
+Our Limbo JDBC driver package (i.e., `limbo-jdbc-{project-version}.jar`) contains three
 types of native Limbo libraries (`Limbojdbc.dll`, `Limbojdbc.dylib`, `Limbojdbc.so`),
 each of them is compiled for Windows, macOS and Linux. An appropriate native library
 file is automatically extracted into your OS's temporary folder, when your program
@@ -109,7 +109,7 @@ loads `org.Limbo.JDBC` driver.
 
 === Supported Operating Systems
 
-Since Limbo-jdbc-3.6.19, the natively compiled Limbo engines will be used for
+Since limbo-jdbc-3.6.19, the natively compiled Limbo engines will be used for
 the following operating systems:
 
 |===
@@ -171,20 +171,20 @@ When packaging the resulting app, simply include the library in the distribution
 
 == Download
 
-Download from https://search.maven.org/artifact/org.xerial/Limbo-jdbc[Maven Central] or from the https://github.com/xerial/Limbo-jdbc/releases[releases] page.
+Download from https://search.maven.org/artifact/com.marvinformatics/limbo-jdbc[Maven Central] or from the https://github.com/velo/limbo-jdbc/releases[releases] page.
 
 [source,xml,subs="attributes+"]
 ----
 <dependencies>
     <dependency>
-      <groupId>org.xerial</groupId>
-      <artifactId>Limbo-jdbc</artifactId>
+      <groupId>com.marvinformatics</groupId>
+      <artifactId>limbo-jdbc</artifactId>
       <version>{project-version}</version>
     </dependency>
 </dependencies>
 ----
 
-Snapshots of the development version are available in https://oss.sonatype.org/content/repositories/snapshots/org/xerial/Limbo-jdbc/[Sonatype's snapshots repository].
+Snapshots of the development version are available in https://oss.sonatype.org/content/repositories/snapshots/org/velo/limbo-jdbc/[Sonatype's snapshots repository].
 
 === Validating downloads
 
@@ -196,7 +196,7 @@ The following key is currently used to sign releases:
 
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Comment: C1CB A75E C9BD 0BAF 8061  9354 59E0 5CE6 1818 7ED4
-Comment: Taro L. Saito (For GitHub Actions) <leo@xerial.org>
+Comment: Taro L. Saito (For GitHub Actions) <leo@velo.org>
 
 xjMEYuRVGhYJKwYBBAHaRw8BAQdA2Dp4m1Yhtb1g94pQzzL24FuP6b9KXF8lP9Dh
 hZnynhfNM1Rhcm8gTC4gU2FpdG8gKEZvciBHaXRIdWIgQWN0aW9ucykgPGxlb0B4
@@ -236,8 +236,8 @@ You may need to add shade plugin transformer to solve `No suitable driver found 
 [source,xml,subs="attributes+"]
 ----
 <dependency>
-    <groupId>org.xerial</groupId>
-    <artifactId>Limbo-jdbc</artifactId>
+    <groupId>com.marvinformatics</groupId>
+    <artifactId>limbo-jdbc</artifactId>
     <version>{project-version}</version>
 </dependency>
 ----
@@ -246,7 +246,7 @@ You may need to add shade plugin transformer to solve `No suitable driver found 
 
 We are always looking for:
 
-- *Reviewers* for issues or PRs, you can check image:https://img.shields.io/github/labels/xerial/Limbo-jdbc/review%20wanted[GitHub labels,link=https://github.com/xerial/Limbo-jdbc/labels/review%20wanted]
-- *Contributors* to submit PRs, you can check image:https://img.shields.io/github/labels/xerial/Limbo-jdbc/help%20wanted[GitHub labels,link=https://github.com/xerial/Limbo-jdbc/labels/help%20wanted] and image:https://img.shields.io/github/labels/xerial/Limbo-jdbc/good%20first%20issue[GitHub labels,link=https://github.com/xerial/Limbo-jdbc/labels/good%20first%20issue]
+- *Reviewers* for issues or PRs, you can check image:https://img.shields.io/github/labels/velo/limbo-jdbc/review%20wanted[GitHub labels,link=https://github.com/velo/limbo-jdbc/labels/review%20wanted]
+- *Contributors* to submit PRs, you can check image:https://img.shields.io/github/labels/velo/limbo-jdbc/help%20wanted[GitHub labels,link=https://github.com/velo/limbo-jdbc/labels/help%20wanted] and image:https://img.shields.io/github/labels/velo/limbo-jdbc/good%20first%20issue[GitHub labels,link=https://github.com/velo/limbo-jdbc/labels/good%20first%20issue]
 
 Please read our link:./CONTRIBUTING.md[contribution] guide.
